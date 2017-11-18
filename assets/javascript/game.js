@@ -45,7 +45,6 @@ function letToGuess(){
 					console.log(userInput);
 				var lett = $("<h3>");
 				$("#yourG").append(userInput);
-//				countWin++;
 				$("#wins").empty();
 				updateScore();	
 			}
