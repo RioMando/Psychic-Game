@@ -53,7 +53,6 @@ function letToGuess(){
 
 	gessLft--;
 	}
-
 }
-
+updateScore();
 letToGuess();
