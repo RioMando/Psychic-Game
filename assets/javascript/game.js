@@ -3,7 +3,9 @@ var letters = ["a","b","c","d","e","f","g"]
 var countWin = 0;
 var countLoss = 0;
 var gessLft = 9;
-var toGuess = "z";
+var toGuess;
+var toGuess1;
+
 // -- Functions --
 // Function that updates the score...
 function updateScore() {
@@ -13,33 +15,19 @@ function updateScore() {
    	console.log("Wins :" + countWin);
 }
 
-
-
-// -- Main Process --
-/**-----------------------------------------------------------**/
-/**Calling functions to start the game**/
-
-
-//Randomly selection of letter from array letters
-
-//Random number for the length of the array 
-function lettToGuess(){
+//updateScore();
+function letToGuess(){
 	var i = Math.floor(Math.random()*letters.length);
 	var toGuess = letters[i];
-	console.log("The letter to guess is: " + toGuess);
-}
-
-
-
-
+	console.log("The letter to guess inside function: " + toGuess);
 
 //for (gessLft==9; gessLft > 0; gessLft--){
 	
-		
 		document.onkeyup = function(event) {
-		lettToGuess();
 		updateScore();
+		
 		console.log("gess lft: " + gessLft);
+		console.log("let to Guess inside111: " + toGuess);
 	    // Determine which key was pressed, make it lowercase, and set it to the userInput variable.
 	    var userInput = String.fromCharCode(event.keyCode).toLowerCase();
 
@@ -49,6 +37,7 @@ function lettToGuess(){
 			$("#yourG").empty();
 			$("#wins").empty();
 			updateScore();
+			letToGuess();
 		}
 		else{
 			// Only run this code if is typed a character between "a" and "z".
@@ -56,7 +45,6 @@ function lettToGuess(){
 					console.log(userInput);
 				var lett = $("<h3>");
 				$("#yourG").append(userInput);
-//				countWin++;
 				$("#wins").empty();
 				updateScore();	
 			}
@@ -65,16 +53,6 @@ function lettToGuess(){
 
 	gessLft--;
 	}
-//}
-
- 
-/**
-      // Let's start by grabbing a reference to the <span> below.
-      var userText = document.getElementById("yourG");
-
-      // Next, we give JavaScript a function to execute when onkeyup event fires.
-      document.onkeyup = function(event) {
-        userText.textContent = event.key;
-//        console.log("userText =" + userText.textContent );         
-      };
-**/
+}
+updateScore();
+letToGuess();
