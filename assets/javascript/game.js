@@ -14,8 +14,17 @@ function updateScore() {
    	$("#wins").append("Wins: " + countWin);
    	console.log("Wins :" + countWin);
 }
+function updateLoss() {
+	var nwLoss = countLoss.toString();
+   	var nwLoss = $("<h3>");
+   	$("#loss").append(countLoss);
+}
+function updateGuess(){
+	var nwGss = gessLft.toString();
+   	var nwGss = $("<h3>");
+   	$("#guess").append(gessLft);
+}
 
-//updateScore();
 function letToGuess(){
 	var i = Math.floor(Math.random()*letters.length);
 	var toGuess = letters[i];
@@ -23,8 +32,7 @@ function letToGuess(){
 
 //for (gessLft==9; gessLft > 0; gessLft--){
 	
-		document.onkeyup = function(event) {
-		updateScore();
+	document.onkeyup = function(event) {
 		
 		console.log("gess lft: " + gessLft);
 		console.log("let to Guess inside111: " + toGuess);
@@ -33,26 +41,45 @@ function letToGuess(){
 
 	    if (userInput == toGuess){
 			countWin++;
-			gessLft=9;
 			$("#yourG").empty();
+			gessLft = 9;
+			letToGuess();
 			$("#wins").empty();
 			updateScore();
-			letToGuess();
+			$("#guess").empty();
+			updateGuess();
 		}
-		else{
+		else {
 			// Only run this code if is typed a character between "a" and "z".
 		    if ((userInput >= "a") && (userInput <= "z")){
 					console.log(userInput);
-				var lett = $("<h3>");
-				$("#yourG").append(userInput);
-				$("#wins").empty();
-				updateScore();	
+			var lett = $("<h3>");
+			$("#yourG").append(userInput);
+			$("#wins").empty();
+			updateScore();
+			gessLft--;
+			console.log("Guess Left: " + gessLft);
+			//countLoss++;
+			$("#guess").empty();
+			updateGuess();
+			if (gessLft===0){
+				countLoss++;
+				$("#yourG").empty();
+				$("#loss").empty();
+				updateLoss();
+				gessLft = 9;
+				$("#guess").empty();
+				updateGuess();
+
 			}
 		}
+	}
 	
 
-	gessLft--;
 	}
+	
 }
 updateScore();
+updateLoss();
+updateGuess();
 letToGuess();
